@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import LoginPage from '../view/LoginPage'
 import MainPage from '../view/MainPage'
 import HomeView from '../view/HomeView'
 import InstantView from '../view/InstantView'
@@ -15,6 +16,10 @@ export default new Router({
     {
       path: '/',
       redirect: '/main/home'
+    },
+    {
+      path: '/login',
+      component: LoginPage
     },
     {
       path: '/main',
