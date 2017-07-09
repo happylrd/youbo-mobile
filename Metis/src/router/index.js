@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import LoginPage from '../view/LoginPage'
+import RegisterPage from '../view/RegisterPage'
 import MainPage from '../view/MainPage'
 import HomeView from '../view/HomeView'
 import InstantView from '../view/InstantView'
@@ -20,6 +21,10 @@ export default new Router({
     {
       path: '/login',
       component: LoginPage
+    },
+    {
+      path: '/register',
+      component: RegisterPage
     },
     {
       path: '/main',
