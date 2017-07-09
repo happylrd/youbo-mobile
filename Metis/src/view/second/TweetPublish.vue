@@ -27,7 +27,7 @@
     <div style="padding: 16px">
       <md-input-container>
         <label>图片上传</label>
-        <md-file v-model="onlyImages" accept="image/*"></md-file>
+        <md-file v-model="imageFile" accept="image/*"></md-file>
       </md-input-container>
     </div>
   </div>
@@ -38,7 +38,8 @@
     data () {
       return {
         nickname: '竹轩听雨',
-        textContent: ''
+        textContent: '',
+        imageFile: ''
       }
     },
     computed: {
