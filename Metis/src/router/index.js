@@ -5,6 +5,7 @@ import HomeView from '../view/HomeView'
 import InstantView from '../view/InstantView'
 import NotificationView from '../view/NotificationView'
 import MyView from '../view/MyView'
+import TweetPublish from '../view/second/TweetPublish'
 
 Vue.use(Router)
 
@@ -32,6 +33,10 @@ export default new Router({
           component: MyView
         }
       ]
+    },
+    {
+      path: '/publish/tweet',
+      component: TweetPublish
     }
   ]
 })
