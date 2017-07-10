@@ -20,7 +20,7 @@
 
       <div style="text-align: center">
         <span>
-        <md-button class="md-icon-button">
+        <md-button class="md-icon-button" @click="addComment()">
           <md-icon>comment</md-icon>
         </md-button>
           {{tweet.commentSize}}
@@ -49,6 +49,11 @@
     props: {
       tweet: {
         type: Object
+      }
+    },
+    methods: {
+      addComment () {
+        this.$router.push('/publish/comment')
       }
     }
   }

@@ -7,7 +7,7 @@
 
       <span style="flex: 1"></span>
 
-      <md-button class="md-raised md-primary" :disabled="!hasTextContent">发表</md-button>
+      <md-button class="md-raised md-primary" :disabled="!hasTextContent">回复</md-button>
     </md-toolbar>
 
     <div style="padding: 16px">
@@ -19,15 +19,8 @@
 
     <div style="padding: 16px">
       <md-input-container>
-        <label>有什么新鲜事？</label>
+        <label>发布你的回复</label>
         <md-textarea maxlength="150" v-model="textContent"></md-textarea>
-      </md-input-container>
-    </div>
-
-    <div style="padding: 16px">
-      <md-input-container>
-        <label>图片上传</label>
-        <md-file v-model="imageFile" accept="image/*"></md-file>
       </md-input-container>
     </div>
   </div>
@@ -38,8 +31,7 @@
     data () {
       return {
         nickname: '竹轩听雨',
-        textContent: '',
-        imageFile: ''
+        textContent: ''
       }
     },
     computed: {
