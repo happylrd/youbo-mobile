@@ -8,7 +8,9 @@
       </md-avatar>
     </md-toolbar>
 
-    <router-view></router-view>
+    <div style="margin-bottom: 56px">
+      <router-view></router-view>
+    </div>
 
     <div class="fab-fixed-right-bottom" style="z-index: 10">
       <md-button class="md-fab" @click="addTweet">

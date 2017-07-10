@@ -4,7 +4,7 @@ import LoginPage from '../view/LoginPage'
 import RegisterPage from '../view/RegisterPage'
 import MainPage from '../view/MainPage'
 import HomeView from '../view/HomeView'
-import InstantView from '../view/InstantView'
+import ExploreView from '../view/ExploreView'
 import NotificationView from '../view/NotificationView'
 import MyView from '../view/MyView'
 import TweetPublish from '../view/second/TweetPublish'
@@ -37,8 +37,8 @@ export default new Router({
           component: HomeView
         },
         {
-          path: 'instant',
-          component: InstantView
+          path: 'explore',
+          component: ExploreView
         },
         {
           path: 'notification',
