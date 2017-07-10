@@ -53,10 +53,16 @@
           </span>
       </div>
     </md-card>
+
+    <div v-for="item in comments" :key="item.id">
+      <CommentItem :comment="item"></CommentItem>
+    </div>
   </div>
 </template>
 
 <script>
+  import CommentItem from '../../components/commentitem/CommentItem'
+
   const NO_EXIST_ID = -1
 
   export default {
@@ -68,7 +74,17 @@
         commentSize: 10,
         collectionSize: 20,
         favoriteSize: 30,
-        nickname: '竹轩听雨'
+        nickname: '竹轩听雨',
+        comments: [
+          {
+            nickname: '倚楼听风雨',
+            textContent: '说的不错233'
+          },
+          {
+            nickname: '倚楼听风雨2',
+            textContent: '说的不错2336'
+          }
+        ]
       }
     },
     created () {
@@ -81,6 +97,9 @@
       toPrevPage () {
         this.$router.go(-1)
       }
+    },
+    components: {
+      CommentItem
     }
   }
 </script>
