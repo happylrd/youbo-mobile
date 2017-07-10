@@ -9,6 +9,7 @@ import NotificationView from '../view/NotificationView'
 import MyView from '../view/MyView'
 import TweetPublish from '../view/second/TweetPublish'
 import CommentPublish from '../view/second/CommentPublish'
+import TweetDetail from '../view/second/TweetDetail'
 
 Vue.use(Router)
 
@@ -56,6 +57,10 @@ export default new Router({
     {
       path: '/publish/comment',
       component: CommentPublish
+    },
+    {
+      path: '/tweet/:id',
+      component: TweetDetail
     }
   ]
 })
