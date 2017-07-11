@@ -10,6 +10,8 @@ A mobile web for youbo.
 
 - **vue**
 - vue-router
+- vuex
+- axios
 - [vue-material](https://github.com/vuematerial/vue-material)
 - vue-cli with PWA support
   - webpack
