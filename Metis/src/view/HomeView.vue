@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div style="text-align: center" v-if="isLoading">
+      <md-spinner md-indeterminate></md-spinner>
+    </div>
+
     <div v-for="item in tweetList" :key="item.id">
       <TweetItem :tweet="item"></TweetItem>
     </div>
@@ -8,30 +12,30 @@
 
 <script>
   import TweetItem from '../components/tweetitem/TweetItem'
+  import { listTweet } from '../api/tweet'
 
   export default {
     data () {
       return {
-        tweetList: [
-          {
-            id: 1,
-            textContent: 'Awesome Image666666666666666666666666666666',
-            createAt: '2017-07-10:09-09-09',
-            commentSize: 10,
-            collectionSize: 20,
-            favoriteSize: 30,
-            nickname: '竹轩听雨'
-          },
-          {
-            id: 2,
-            textContent: 'Awesome Image666666666666666666666666666666',
-            createAt: '2017-07-10:09-09-09',
-            commentSize: 10,
-            collectionSize: 20,
-            favoriteSize: 30,
-            nickname: '竹轩听雨2'
-          }
-        ]
+        isLoading: false,
+        tweetList: []
+      }
+    },
+    created () {
+      this.fetchData()
+    },
+    methods: {
+      _getTweets () {
+        listTweet()
+          .then(res => {
+            this.isLoading = false
+            this.tweetList = res.data
+          })
+      },
+      fetchData () {
+        this.isLoading = true
+        // TODO: just for mocking loading, will be removed later
+        setTimeout(this._getTweets, 1000)
       }
     },
     components: {

@@ -8,15 +8,15 @@
           </md-avatar>
 
           <div class="md-title">{{tweet.nickname}}</div>
-          <div class="md-subhead">{{tweet.createAt}}</div>
+          <div class="md-subhead">{{createAt}}</div>
         </md-card-header>
 
         <md-card-content>
-          {{tweet.textContent}}
+          {{textContent}}
         </md-card-content>
 
-        <md-card-media>
-          <img src="http://cdn.happylrd.com/image/shaosiming_1.jpg" alt="推文图片">
+        <md-card-media v-if="imageSize > 0">
+          <img :src="imageContent" alt="推文图片">
         </md-card-media>
       </div>
 
@@ -47,10 +47,36 @@
 </template>
 
 <script>
+  import { FRAGMENT_TEXT, FRAGMENT_IMAGE } from '../../api/constant'
+
   export default {
     props: {
       tweet: {
         type: Object
+      }
+    },
+    computed: {
+      createAt () {
+        let createAt = this.tweet.createAt
+        let date = createAt[0] + '-' + createAt[1] + '-' + createAt[2]
+        let time = createAt[3] + ':' + createAt[4] + ':' + createAt[5]
+        return date + ' ' + time
+      },
+      textContent () {
+        let textFragment = this.tweet.fragments
+          .filter(fragment => fragment.type === FRAGMENT_TEXT)[0]
+        return textFragment.content
+      },
+      imageSize () {
+        let imageFragments = this.tweet.fragments
+          .filter(fragment => fragment.type === FRAGMENT_IMAGE)
+        return imageFragments.length
+      },
+      imageContent () {
+        if (this.imageSize > 0) {
+          return this.tweet.fragments
+            .filter(fragment => fragment.type === FRAGMENT_IMAGE)[0].content
+        }
       }
     },
     methods: {

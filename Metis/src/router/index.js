@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store/index'
+import * as types from '../store/mutations'
 import LoginPage from '../view/LoginPage'
 import RegisterPage from '../view/RegisterPage'
 import MainPage from '../view/MainPage'
@@ -80,6 +81,10 @@ const routes = [
     component: TweetDetail
   }
 ]
+
+if (window.localStorage.getItem('token')) {
+  store.commit(types.LOGIN, window.localStorage.getItem('token'))
+}
 
 const router = new VueRouter({
   mode: 'history',
