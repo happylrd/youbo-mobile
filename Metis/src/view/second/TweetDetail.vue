@@ -15,10 +15,10 @@
     <md-card md-with-hover>
       <md-card-header>
         <md-avatar>
-          <img src="../../common/image/avatar.png" alt="头像">
+          <img :src="tweet.avatar" alt="头像">
         </md-avatar>
 
-        <div class="md-title">{{nickname}}</div>
+        <div class="md-title">{{tweet.nickname}}</div>
         <div class="md-subhead">{{createAt}}</div>
       </md-card-header>
 
@@ -26,8 +26,8 @@
         {{textContent}}
       </md-card-content>
 
-      <md-card-media>
-        <img src="http://cdn.happylrd.com/image/shaosiming_1.jpg" alt="推文图片">
+      <md-card-media v-if="imageSize > 0">
+        <img :src="imageContent" alt="推文图片">
       </md-card-media>
 
       <div style="text-align: center">
@@ -35,26 +35,26 @@
         <md-button class="md-icon-button" @click="addComment()">
           <md-icon>comment</md-icon>
         </md-button>
-          {{commentSize}}
+          {{tweet.commentSize}}
          </span>
 
         <span>
         <md-button class="md-icon-button">
           <md-icon>star</md-icon>
         </md-button>
-          {{collectionSize}}
+          {{tweet.collectionSize}}
           </span>
 
         <span>
         <md-button class="md-icon-button">
           <md-icon>favorite</md-icon>
         </md-button>
-          {{favoriteSize}}
+          {{tweet.favoriteSize}}
           </span>
       </div>
     </md-card>
 
-    <div v-for="item in comments" :key="item.id">
+    <div v-for="item in tweet.comments" :key="item.id">
       <CommentItem :comment="item"></CommentItem>
     </div>
   </div>
@@ -62,35 +62,55 @@
 
 <script>
   import CommentItem from '../../components/commentitem/CommentItem'
-
-  const NO_EXIST_ID = -1
+  import { getTweet } from '../../api/tweet'
+  import { CODE_SUCCESS, FRAGMENT_TEXT, FRAGMENT_IMAGE } from '../../api/constant'
 
   export default {
     data () {
       return {
-        id: NO_EXIST_ID,
-        textContent: 'Awesome Image666666666666666666666666666666',
-        createAt: '2017-07-10:09-09-09',
-        commentSize: 10,
-        collectionSize: 20,
-        favoriteSize: 30,
-        nickname: '竹轩听雨',
-        comments: [
-          {
-            nickname: '倚楼听风雨',
-            textContent: '说的不错233'
-          },
-          {
-            nickname: '倚楼听风雨2',
-            textContent: '说的不错2336'
-          }
-        ]
+        tweet: null
       }
     },
     created () {
-      this.id = this.$route.params.id
+      this.fetchData()
+    },
+    computed: {
+      createAt () {
+        let createAt = this.tweet.createAt
+        let date = createAt[0] + '-' + createAt[1] + '-' + createAt[2]
+        let time = createAt[3] + ':' + createAt[4] + ':' + createAt[5]
+        return date + ' ' + time
+      },
+      textContent () {
+        let textFragment = this.tweet.fragments
+          .filter(fragment => fragment.type === FRAGMENT_TEXT)[0]
+        return textFragment.content
+      },
+      imageSize () {
+        let imageFragments = this.tweet.fragments
+          .filter(fragment => fragment.type === FRAGMENT_IMAGE)
+        return imageFragments.length
+      },
+      imageContent () {
+        if (this.imageSize > 0) {
+          return this.tweet.fragments
+            .filter(fragment => fragment.type === FRAGMENT_IMAGE)[0].content
+        }
+      }
     },
     methods: {
+      _getTweet () {
+        getTweet(this.$route.params.id)
+          .then(res => {
+            if (res.code === CODE_SUCCESS) {
+              this.tweet = res.data
+              console.log(this.tweet.comments)
+            }
+          })
+      },
+      fetchData () {
+        this._getTweet()
+      },
       addComment () {
         this.$router.push('/publish/comment')
       },

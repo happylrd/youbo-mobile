@@ -3,33 +3,17 @@
     <md-whiteframe>
       <div style="padding: 16px">
         <md-avatar>
-          <img src="../../common/image/avatar.png" alt="评论者头像">
+          <img :src="comment.avatar" alt="评论者头像">
         </md-avatar>
         {{comment.nickname}}
       </div>
 
-      <div style="padding: 16px">
-        {{comment.textContent}}
+      <div style="padding: 0 16px">
+        {{comment.content}}
       </div>
 
-      <div style="text-align: center">
-        <span>
-          <md-button class="md-icon-button">
-            <md-icon>comment</md-icon>
-          </md-button>
-        </span>
-
-        <span>
-          <md-button class="md-icon-button">
-            <md-icon>star</md-icon>
-          </md-button>
-         </span>
-
-        <span>
-          <md-button class="md-icon-button">
-            <md-icon>favorite</md-icon>
-          </md-button>
-         </span>
+      <div style="text-align: right; padding: 0 16px">
+        {{createAt}}
       </div>
     </md-whiteframe>
   </div>
@@ -40,6 +24,14 @@
     props: {
       comment: {
         type: Object
+      }
+    },
+    computed: {
+      createAt () {
+        let createAt = this.comment.createAt
+        let date = createAt[0] + '-' + createAt[1] + '-' + createAt[2]
+        let time = createAt[3] + ':' + createAt[4] + ':' + createAt[5]
+        return date + ' ' + time
       }
     }
   }

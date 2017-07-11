@@ -4,7 +4,7 @@
       <div @click="toTweetDetail">
         <md-card-header>
           <md-avatar>
-            <img src="../../common/image/avatar.png" alt="头像">
+            <img :src="tweet.avatar" alt="头像">
           </md-avatar>
 
           <div class="md-title">{{tweet.nickname}}</div>

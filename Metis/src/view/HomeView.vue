@@ -13,6 +13,7 @@
 <script>
   import TweetItem from '../components/tweetitem/TweetItem'
   import { listTweet } from '../api/tweet'
+  import { CODE_SUCCESS } from '../api/constant'
 
   export default {
     data () {
@@ -28,8 +29,10 @@
       _getTweets () {
         listTweet()
           .then(res => {
-            this.isLoading = false
-            this.tweetList = res.data
+            if (res.code === CODE_SUCCESS) {
+              this.isLoading = false
+              this.tweetList = res.data
+            }
           })
       },
       fetchData () {
