@@ -32,6 +32,10 @@
 </template>
 
 <script>
+  import {login} from '../api/user'
+  import * as types from '../store/mutations'
+  import {TOKEN_PREFIX} from '../api/constant'
+
   export default {
     data () {
       return {
@@ -41,7 +45,17 @@
     },
     methods: {
       doLogin () {
-        console.log(this.username + ':' + this.password)
+        login(this.username, this.password)
+          .then(res => {
+            this.token = res.substring(TOKEN_PREFIX.length)
+            if (this.token) {
+              this.$store.commit(types.LOGIN, this.token)
+              let redirect = this.$route.query.redirect || '/'
+              this.$router.push({
+                path: redirect
+              })
+            }
+          })
       },
       toRegisterPage () {
         this.$router.push('/register')
