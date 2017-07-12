@@ -50,6 +50,37 @@ export function getInfoById (userId) {
     })
 }
 
+export function getNormalInfo (userId) {
+  const url = '/users/' + userId + '/info'
+
+  return axios.get(url)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
+export function updateInfo (userId, nickname, realname, gender, description) {
+  const url = '/users/' + userId
+
+  return axios.put(url, {
+    nickname: nickname,
+    realname: realname,
+    gender: gender,
+    description: description
+  })
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
+export function updateAvatar (userId, data) {
+  const url = '/users/' + userId + '/avatar'
+
+  return axios.put(url, data)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
 export function publishComment (userId, tweetId, content) {
   const url = '/users/' + userId + '/tweets/' + tweetId + '/comments'
 

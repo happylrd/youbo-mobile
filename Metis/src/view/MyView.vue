@@ -18,6 +18,20 @@
     </div>
 
     <md-list>
+      <md-list-item @click="toProfilePage">
+        <md-button class="md-icon-button md-list-action">
+          <md-icon class="md-primary">info</md-icon>
+        </md-button>
+
+        <span>个人资料</span>
+
+        <md-button class="md-icon-button md-list-action">
+          <md-icon>chevron_right</md-icon>
+        </md-button>
+      </md-list-item>
+    </md-list>
+
+    <md-list>
       <md-list-item @click="toRankPage">
         <md-button class="md-icon-button md-list-action">
           <md-icon class="md-primary">whatshot</md-icon>
@@ -114,6 +128,9 @@
               this.user = res.data
             }
           })
+      },
+      toProfilePage () {
+        this.$router.push('/my/profile')
       },
       toRankPage () {
         console.log('RankPage')
