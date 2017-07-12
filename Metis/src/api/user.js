@@ -100,6 +100,15 @@ export function publishTweet (userId, data) {
     })
 }
 
+export function listMyTweet (userId) {
+  const url = '/users/' + userId + '/tweets'
+
+  return axios.get(url)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
 export function publishComment (userId, tweetId, content) {
   const url = '/users/' + userId + '/tweets/' + tweetId + '/comments'
 

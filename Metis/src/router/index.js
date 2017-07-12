@@ -14,6 +14,7 @@ import CommentPublish from '../view/second/CommentPublish'
 import MyComment from '../view/second/MyComment'
 import MyCollection from '../view/second/MyCollection'
 import MyFavorite from '../view/second/MyFavorite'
+import MyTweet from '../view/second/MyTweet'
 import Profile from '../view/second/Profile'
 import TweetDetail from '../view/second/TweetDetail'
 
@@ -97,6 +98,13 @@ const routes = [
   {
     path: '/my/favorite',
     component: MyFavorite,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/my/tweet',
+    component: MyTweet,
     meta: {
       requireAuth: true
     }

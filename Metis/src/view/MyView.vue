@@ -12,7 +12,7 @@
       {{user.description}}
     </div>
     <div style="text-align: center">
-      <md-button class="md-primary">推文{{user.tweetSize}}</md-button>
+      <md-button class="md-primary" @click="toMyTweet">推文{{user.tweetSize}}</md-button>
       <md-button class="md-primary">关注{{user.followingSize}}</md-button>
       <md-button class="md-primary">粉丝{{user.followerSize}}</md-button>
     </div>
@@ -128,6 +128,9 @@
               this.user = res.data
             }
           })
+      },
+      toMyTweet () {
+        this.$router.push('/my/tweet')
       },
       toProfilePage () {
         this.$router.push('/my/profile')
