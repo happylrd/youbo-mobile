@@ -41,6 +41,9 @@
 </template>
 
 <script>
+  import { register } from '../api/user'
+  import { CODE_SUCCESS } from '../api/constant'
+
   export default {
     data () {
       return {
@@ -51,7 +54,12 @@
     },
     methods: {
       doRegister () {
-        console.log(this.username + ':' + this.password + ':' + this.nickname)
+        register(this.username, this.password, this.nickname)
+          .then(res => {
+            if (res.code === CODE_SUCCESS) {
+              this.toLoginPage()
+            }
+          })
       },
       toLoginPage () {
         this.$router.push('/login')

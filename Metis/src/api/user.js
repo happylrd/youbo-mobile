@@ -1,6 +1,19 @@
 import axios from './http'
 import querystring from 'querystring'
 
+export function register (username, password, nickname) {
+  const url = '/users/register'
+
+  return axios.post(url, {
+    username: username,
+    password: password,
+    nickname: nickname
+  })
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
 /**
  * just for getting token
  * @param username
