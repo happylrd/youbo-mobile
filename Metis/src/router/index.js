@@ -70,7 +70,7 @@ const routes = [
     }
   },
   {
-    path: '/publish/comment',
+    path: '/tweet/:id/publish/comment',
     component: CommentPublish,
     meta: {
       requireAuth: true

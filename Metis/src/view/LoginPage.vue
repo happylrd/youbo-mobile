@@ -32,9 +32,9 @@
 </template>
 
 <script>
-  import {login} from '../api/user'
+  import { login, getInfo } from '../api/user'
   import * as types from '../store/mutations'
-  import {TOKEN_PREFIX} from '../api/constant'
+  import { TOKEN_PREFIX, CODE_SUCCESS } from '../api/constant'
 
   export default {
     data () {
@@ -54,6 +54,17 @@
               this.$router.push({
                 path: redirect
               })
+              // will be improved later
+              this.getUserInfo()
+            }
+          })
+      },
+      getUserInfo () {
+        getInfo(this.username)
+          .then(res => {
+            if (res.code === CODE_SUCCESS) {
+              let currentUser = res.data
+              localStorage.__y_user_id__ = currentUser.id
             }
           })
       },

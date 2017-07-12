@@ -1,4 +1,5 @@
 import axios from './http'
+import querystring from 'querystring'
 
 /**
  * just for getting token
@@ -15,5 +16,25 @@ export function login (username, password) {
   })
     .then(res => {
       return Promise.resolve(res.headers.authorization)
+    })
+}
+
+export function getInfo (username) {
+  const url = '/users/' + username
+
+  return axios.get(url)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
+export function publishComment (userId, tweetId, content) {
+  const url = '/users/' + userId + '/tweets/' + tweetId + '/comments'
+
+  return axios.post(url, querystring.stringify({
+    content: content
+  }))
+    .then(res => {
+      return Promise.resolve(res.data)
     })
 }

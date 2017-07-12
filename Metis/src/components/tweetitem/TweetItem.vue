@@ -85,7 +85,7 @@
         this.$router.push('/tweet/' + this.tweet.id)
       },
       addComment () {
-        this.$router.push('/publish/comment')
+        this.$router.push('/tweet/' + this.tweet.id + '/publish/comment')
       }
     }
   }
