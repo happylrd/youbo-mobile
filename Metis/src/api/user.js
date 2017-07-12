@@ -164,3 +164,21 @@ export function listMyFavorite (userId) {
       return Promise.resolve(res.data)
     })
 }
+
+export function listMyFollowing (userId) {
+  const url = '/users/' + userId + '/following'
+
+  return axios.get(url)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
+export function listMyFollower (userId) {
+  const url = '/users/' + userId + '/followers'
+
+  return axios.get(url)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}

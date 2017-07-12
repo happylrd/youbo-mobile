@@ -14,6 +14,8 @@ import CommentPublish from '../view/second/CommentPublish'
 import MyComment from '../view/second/MyComment'
 import MyCollection from '../view/second/MyCollection'
 import MyFavorite from '../view/second/MyFavorite'
+import MyFollowing from '../view/second/MyFollowing'
+import MyFollower from '../view/second/MyFollower'
 import MyTweet from '../view/second/MyTweet'
 import Profile from '../view/second/Profile'
 import OtherProfile from '../view/second/OtherProfile'
@@ -99,6 +101,20 @@ const routes = [
   {
     path: '/my/favorite',
     component: MyFavorite,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/my/following',
+    component: MyFollowing,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/my/follower',
+    component: MyFollower,
     meta: {
       requireAuth: true
     }

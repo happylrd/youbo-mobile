@@ -11,7 +11,6 @@
         <md-icon>search</md-icon>
       </md-button>
     </md-toolbar>
-
   </div>
 </template>
 

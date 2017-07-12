@@ -104,6 +104,7 @@
           .then(res => {
             if (res.code === CODE_SUCCESS) {
               this.openSnackbar('UpdateAvatarSuccessSnackbar')
+              localStorage.__y_user_avatar__ = res.data.avatar
             }
           })
       },

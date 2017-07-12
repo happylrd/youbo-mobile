@@ -13,8 +13,8 @@
     </div>
     <div style="text-align: center">
       <md-button class="md-primary" @click="toMyTweet">推文{{user.tweetSize}}</md-button>
-      <md-button class="md-primary">关注{{user.followingSize}}</md-button>
-      <md-button class="md-primary">粉丝{{user.followerSize}}</md-button>
+      <md-button class="md-primary" @click="toMyFollowing">关注{{user.followingSize}}</md-button>
+      <md-button class="md-primary" @click="toMyFollower">粉丝{{user.followerSize}}</md-button>
     </div>
 
     <md-list>
@@ -131,6 +131,12 @@
       },
       toMyTweet () {
         this.$router.push('/my/tweet')
+      },
+      toMyFollowing () {
+        this.$router.push('/my/following')
+      },
+      toMyFollower () {
+        this.$router.push('/my/follower')
       },
       toProfilePage () {
         this.$router.push('/my/profile')
