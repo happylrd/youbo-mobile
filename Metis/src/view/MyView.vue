@@ -1,20 +1,20 @@
 <template>
-  <div>
+  <div v-if="user !== null">
     <div style="text-align: center; margin-top: 16px">
       <md-avatar class="md-large">
-        <img src="../common/image/avatar.png" alt="People">
+        <img :src="user.avatar" alt="头像">
       </md-avatar>
     </div>
     <div style="text-align: center; margin-top: 16px; margin-bottom: 8px">
-      {{nickname}}
+      {{user.nickname}}
     </div>
     <div style="text-align: center">
-      {{desc}}
+      {{user.description}}
     </div>
     <div style="text-align: center">
-      <md-button class="md-primary">推文{{tweetSize}}</md-button>
-      <md-button class="md-primary">关注{{followingSize}}</md-button>
-      <md-button class="md-primary">粉丝{{followerSize}}</md-button>
+      <md-button class="md-primary">推文{{user.tweetSize}}</md-button>
+      <md-button class="md-primary">关注{{user.followingSize}}</md-button>
+      <md-button class="md-primary">粉丝{{user.followerSize}}</md-button>
     </div>
 
     <md-list>
@@ -37,7 +37,7 @@
           <md-icon class="md-primary">comment</md-icon>
         </md-button>
 
-        <span>我的评论({{commentSize}})</span>
+        <span>我的评论({{user.commentSize}})</span>
 
         <md-button class="md-icon-button md-list-action">
           <md-icon>chevron_right</md-icon>
@@ -51,7 +51,7 @@
           <md-icon class="md-primary">star</md-icon>
         </md-button>
 
-        <span>我的收藏({{collectionSize}})</span>
+        <span>我的收藏({{user.collectionSize}})</span>
 
         <md-button class="md-icon-button md-list-action">
           <md-icon>chevron_right</md-icon>
@@ -65,7 +65,7 @@
           <md-icon class="md-primary">favorite</md-icon>
         </md-button>
 
-        <span>我的喜欢({{favoriteSize}})</span>
+        <span>我的喜欢({{user.favoriteSize}})</span>
 
         <md-button class="md-icon-button md-list-action">
           <md-icon>chevron_right</md-icon>
@@ -90,20 +90,31 @@
 </template>
 
 <script>
+  import {getInfoById} from '../api/user'
+  import {CODE_SUCCESS} from '../api/constant'
+
   export default {
     data () {
       return {
-        nickname: '竹轩听雨',
-        desc: '这个人很懒，什么都没有留下',
-        tweetSize: 10,
-        followingSize: 20,
-        followerSize: 5,
-        commentSize: 1,
-        collectionSize: 2,
-        favoriteSize: 3
+        user: null
       }
     },
+    created () {
+      this.fetchData()
+    },
     methods: {
+      fetchData () {
+        this._getInfoById()
+      },
+      _getInfoById () {
+        let userId = localStorage.__y_user_id__
+        getInfoById(userId)
+          .then(res => {
+            if (res.code === CODE_SUCCESS) {
+              this.user = res.data
+            }
+          })
+      },
       toRankPage () {
         console.log('RankPage')
       },

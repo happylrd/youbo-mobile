@@ -28,6 +28,15 @@ export function getInfo (username) {
     })
 }
 
+export function getInfoById (userId) {
+  const url = '/users/id/' + userId
+
+  return axios.get(url)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
 export function publishComment (userId, tweetId, content) {
   const url = '/users/' + userId + '/tweets/' + tweetId + '/comments'
 

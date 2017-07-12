@@ -12,25 +12,27 @@
       </md-button>
     </md-toolbar>
 
-    <md-card md-with-hover>
-      <md-card-header>
-        <md-avatar>
-          <img :src="tweet.avatar" alt="头像">
-        </md-avatar>
+    <div v-if="tweet !== null">
+      <md-card md-with-hover>
+        <md-card-header>
+          <md-avatar>
+            <img :src="tweet.avatar" alt="头像">
+          </md-avatar>
 
-        <div class="md-title">{{tweet.nickname}}</div>
-        <div class="md-subhead">{{createAt}}</div>
-      </md-card-header>
+          <div class="md-title">{{tweet.nickname}}</div>
+          <div class="md-subhead">{{createAt}}</div>
+        </md-card-header>
 
-      <md-card-content>
-        {{textContent}}
-      </md-card-content>
+        <md-card-content>
+          {{textContent}}
 
-      <md-card-media v-if="imageSize > 0">
-        <img :src="imageContent" alt="推文图片">
-      </md-card-media>
+        </md-card-content>
 
-      <div style="text-align: center">
+        <md-card-media v-if="imageSize > 0">
+          <img :src="imageContent" alt="推文图片">
+        </md-card-media>
+
+        <div style="text-align: center">
         <span>
         <md-button class="md-icon-button" @click="addComment()">
           <md-icon>comment</md-icon>
@@ -38,24 +40,25 @@
           {{tweet.commentSize}}
          </span>
 
-        <span>
+          <span>
         <md-button class="md-icon-button" @click="addCollection">
           <md-icon>star</md-icon>
         </md-button>
           {{tweet.collectionSize}}
           </span>
 
-        <span>
+          <span>
         <md-button class="md-icon-button" @click="addFavorite">
           <md-icon>favorite</md-icon>
         </md-button>
           {{tweet.favoriteSize}}
           </span>
-      </div>
-    </md-card>
+        </div>
+      </md-card>
 
-    <div v-for="item in tweet.comments" :key="item.id">
-      <CommentItem :comment="item"></CommentItem>
+      <div v-for="item in tweet.comments" :key="item.id">
+        <CommentItem :comment="item"></CommentItem>
+      </div>
     </div>
 
     <md-snackbar :md-position="vertical + ' ' + horizontal" ref="CollectionSnackbar" :md-duration="duration">
@@ -73,7 +76,7 @@
 <script>
   import CommentItem from '../../components/commentitem/CommentItem'
   import { getTweet } from '../../api/tweet'
-  import {collectTweet, doFavorite} from '../../api/user'
+  import { collectTweet, doFavorite } from '../../api/user'
   import { CODE_SUCCESS, FRAGMENT_TEXT, FRAGMENT_IMAGE } from '../../api/constant'
 
   export default {
