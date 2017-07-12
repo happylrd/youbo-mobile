@@ -9,6 +9,15 @@ export function listTweet () {
     })
 }
 
+export function listTopTweet (number) {
+  const url = '/tweets/top/' + number
+
+  return axios.get(url)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
 export function getTweet (tweetId) {
   const url = '/tweets/' + tweetId
 

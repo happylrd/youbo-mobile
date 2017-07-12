@@ -4,7 +4,7 @@
       <md-icon class="md-primary">person</md-icon>
 
       <md-avatar class="md-list-action">
-        <img src="../../common/image/avatar.png" alt="头像">
+        <img :src="notification.avatar" alt="头像">
       </md-avatar>
     </div>
 

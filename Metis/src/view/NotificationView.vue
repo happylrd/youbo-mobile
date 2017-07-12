@@ -15,18 +15,23 @@
       return {
         notifications: [
           {
+            avatar: 'http://image.youbo.io/4dbe7f5c-0efa-4e6e-bf78-f5adced7f970.png',
             content: '倚楼听风雨关注了你'
           },
           {
+            avatar: 'http://image.youbo.io/4dbe7f5c-0efa-4e6e-bf78-f5adced7f970.png',
             content: '倚楼听风雨2关注了你'
           },
           {
+            avatar: 'http://image.youbo.io/4dbe7f5c-0efa-4e6e-bf78-f5adced7f970.png',
             content: '倚楼听风雨3关注了你'
           },
           {
+            avatar: 'http://image.youbo.io/4dbe7f5c-0efa-4e6e-bf78-f5adced7f970.png',
             content: '倚楼听风雨4关注了你'
           },
           {
+            avatar: 'http://image.youbo.io/4dbe7f5c-0efa-4e6e-bf78-f5adced7f970.png',
             content: '倚楼听风雨5关注了你'
           }
         ]
