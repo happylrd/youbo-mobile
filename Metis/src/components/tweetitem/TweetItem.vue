@@ -1,8 +1,8 @@
 <template>
   <div>
     <md-card>
-      <div @click="toTweetDetail">
-        <md-card-header>
+      <div>
+        <md-card-header @click.native="toOtherProfile">
           <md-avatar>
             <img :src="tweet.avatar" alt="头像">
           </md-avatar>
@@ -11,13 +11,15 @@
           <div class="md-subhead">{{createAt}}</div>
         </md-card-header>
 
-        <md-card-content>
-          {{textContent}}
-        </md-card-content>
+        <div @click="toTweetDetail">
+          <md-card-content>
+            {{textContent}}
+          </md-card-content>
 
-        <md-card-media v-if="imageSize > 0">
-          <img :src="imageContent" alt="推文图片">
-        </md-card-media>
+          <md-card-media v-if="imageSize > 0">
+            <img :src="imageContent" alt="推文图片">
+          </md-card-media>
+        </div>
       </div>
 
       <div style="text-align: center">
@@ -81,8 +83,10 @@
     },
     methods: {
       toTweetDetail () {
-        console.log(this.tweet.id)
         this.$router.push('/tweet/' + this.tweet.id)
+      },
+      toOtherProfile () {
+        this.$router.push('/other/' + this.tweet.userId)
       },
       addComment () {
         this.$router.push('/tweet/' + this.tweet.id + '/publish/comment')

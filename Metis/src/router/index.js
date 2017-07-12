@@ -16,6 +16,7 @@ import MyCollection from '../view/second/MyCollection'
 import MyFavorite from '../view/second/MyFavorite'
 import MyTweet from '../view/second/MyTweet'
 import Profile from '../view/second/Profile'
+import OtherProfile from '../view/second/OtherProfile'
 import TweetDetail from '../view/second/TweetDetail'
 
 Vue.use(VueRouter)
@@ -112,6 +113,13 @@ const routes = [
   {
     path: '/my/profile',
     component: Profile,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/other/:id',
+    component: OtherProfile,
     meta: {
       requireAuth: true
     }
