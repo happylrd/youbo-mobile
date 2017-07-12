@@ -39,14 +39,14 @@
          </span>
 
         <span>
-        <md-button class="md-icon-button">
+        <md-button class="md-icon-button" @click="addCollection">
           <md-icon>star</md-icon>
         </md-button>
           {{tweet.collectionSize}}
           </span>
 
         <span>
-        <md-button class="md-icon-button">
+        <md-button class="md-icon-button" @click="addFavorite">
           <md-icon>favorite</md-icon>
         </md-button>
           {{tweet.favoriteSize}}
@@ -57,18 +57,32 @@
     <div v-for="item in tweet.comments" :key="item.id">
       <CommentItem :comment="item"></CommentItem>
     </div>
+
+    <md-snackbar :md-position="vertical + ' ' + horizontal" ref="CollectionSnackbar" :md-duration="duration">
+      <span>添加收藏成功</span>
+      <md-button class="md-accent" @click="closeSnackbar('CollectionSnackbar')">确定</md-button>
+    </md-snackbar>
+
+    <md-snackbar :md-position="vertical + ' ' + horizontal" ref="FavoriteSnackbar" :md-duration="duration">
+      <span>添加喜欢成功</span>
+      <md-button class="md-accent" @click="closeSnackbar('FavoriteSnackbar')">确定</md-button>
+    </md-snackbar>
   </div>
 </template>
 
 <script>
   import CommentItem from '../../components/commentitem/CommentItem'
   import { getTweet } from '../../api/tweet'
+  import {collectTweet, doFavorite} from '../../api/user'
   import { CODE_SUCCESS, FRAGMENT_TEXT, FRAGMENT_IMAGE } from '../../api/constant'
 
   export default {
     data () {
       return {
-        tweet: null
+        tweet: null,
+        vertical: 'bottom',
+        horizontal: 'center',
+        duration: 4000
       }
     },
     created () {
@@ -114,8 +128,34 @@
       addComment () {
         this.$router.push('/tweet/' + this.tweet.id + '/publish/comment')
       },
+      addCollection () {
+        let userId = localStorage.__y_user_id__
+        let tweetId = this.tweet.id
+        collectTweet(userId, tweetId)
+          .then(res => {
+            if (res.code === CODE_SUCCESS) {
+              this.openSnackbar('CollectionSnackbar')
+            }
+          })
+      },
+      addFavorite () {
+        let userId = localStorage.__y_user_id__
+        let tweetId = this.tweet.id
+        doFavorite(userId, tweetId)
+          .then(res => {
+            if (res.code === CODE_SUCCESS) {
+              this.openSnackbar('FavoriteSnackbar')
+            }
+          })
+      },
       toPrevPage () {
         this.$router.go(-1)
+      },
+      openSnackbar (ref) {
+        this.$refs[ref].open()
+      },
+      closeSnackbar (ref) {
+        this.$refs[ref].close()
       }
     },
     components: {

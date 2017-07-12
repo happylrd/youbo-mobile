@@ -38,3 +38,21 @@ export function publishComment (userId, tweetId, content) {
       return Promise.resolve(res.data)
     })
 }
+
+export function collectTweet (userId, tweetId) {
+  const url = '/users/' + userId + '/tweets/' + tweetId + '/collections'
+
+  return axios.post(url)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
+export function doFavorite (userId, tweetId) {
+  const url = '/users/' + userId + '/tweets/' + tweetId + '/favorites'
+
+  return axios.post(url)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
