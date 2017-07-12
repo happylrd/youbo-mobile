@@ -34,8 +34,6 @@
           <md-radio v-model="user.gender" md-value="0">未知</md-radio>
         </div>
 
-        {{user.gender}}
-
         <md-input-container>
           <label>简介</label>
           <md-textarea v-model="user.description" maxlength="150"></md-textarea>

@@ -81,6 +81,25 @@ export function updateAvatar (userId, data) {
       return Promise.resolve(res.data)
     })
 }
+
+export function upload (data) {
+  const url = '/users/upload'
+
+  return axios.post(url, data)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
+export function publishTweet (userId, data) {
+  const url = '/users/' + userId + '/tweets'
+
+  return axios.post(url, data)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
 export function publishComment (userId, tweetId, content) {
   const url = '/users/' + userId + '/tweets/' + tweetId + '/comments'
 
