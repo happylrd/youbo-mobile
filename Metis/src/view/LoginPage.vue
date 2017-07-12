@@ -65,6 +65,8 @@
             if (res.code === CODE_SUCCESS) {
               let currentUser = res.data
               localStorage.__y_user_id__ = currentUser.id
+              localStorage.__y_user_nickname__ = currentUser.nickname
+              localStorage.__y_user_avatar__ = currentUser.avatar
             }
           })
       },

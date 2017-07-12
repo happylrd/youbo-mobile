@@ -12,7 +12,7 @@
 
     <div style="padding: 16px">
       <md-avatar style="margin-right: 16px">
-        <img src="../../common/image/avatar.png" alt="头像">
+        <img :src="avatar" alt="头像">
       </md-avatar>
       {{nickname}}
     </div>
@@ -44,7 +44,8 @@
   export default {
     data () {
       return {
-        nickname: '竹轩听雨',
+        nickname: '',
+        avatar: '',
         textContent: '',
         imageUrl: '',
         vertical: 'bottom',
@@ -56,6 +57,10 @@
       hasTextContent () {
         return this.textContent !== ''
       }
+    },
+    created () {
+      this.nickname = localStorage.__y_user_nickname__
+      this.avatar = localStorage.__y_user_avatar__
     },
     methods: {
       _uploadImage () {
