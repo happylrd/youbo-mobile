@@ -12,6 +12,8 @@ import MyView from '../view/MyView'
 import TweetPublish from '../view/second/TweetPublish'
 import CommentPublish from '../view/second/CommentPublish'
 import MyComment from '../view/second/MyComment'
+import MyCollection from '../view/second/MyCollection'
+import MyFavorite from '../view/second/MyFavorite'
 import TweetDetail from '../view/second/TweetDetail'
 
 Vue.use(VueRouter)
@@ -80,6 +82,20 @@ const routes = [
   {
     path: '/my/comment',
     component: MyComment,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/my/collection',
+    component: MyCollection,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/my/favorite',
+    component: MyFavorite,
     meta: {
       requireAuth: true
     }

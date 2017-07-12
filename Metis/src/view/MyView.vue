@@ -124,9 +124,11 @@
       },
       toMyCollectionPage () {
         console.log('MyCollectionPage')
+        this.$router.push('/my/collection')
       },
       toMyFavoritePage () {
         console.log('MyFavoritePage')
+        this.$router.push('/my/favorite')
       }
     }
   }

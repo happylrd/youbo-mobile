@@ -79,10 +79,28 @@ export function collectTweet (userId, tweetId) {
     })
 }
 
+export function listMyCollection (userId) {
+  const url = '/users/' + userId + '/collections'
+
+  return axios.get(url)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
 export function doFavorite (userId, tweetId) {
   const url = '/users/' + userId + '/tweets/' + tweetId + '/favorites'
 
   return axios.post(url)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
+export function listMyFavorite (userId) {
+  const url = '/users/' + userId + '/favorites'
+
+  return axios.get(url)
     .then(res => {
       return Promise.resolve(res.data)
     })
