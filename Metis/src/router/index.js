@@ -11,6 +11,7 @@ import NotificationView from '../view/NotificationView'
 import MyView from '../view/MyView'
 import TweetPublish from '../view/second/TweetPublish'
 import CommentPublish from '../view/second/CommentPublish'
+import MyComment from '../view/second/MyComment'
 import TweetDetail from '../view/second/TweetDetail'
 
 Vue.use(VueRouter)
@@ -72,6 +73,13 @@ const routes = [
   {
     path: '/tweet/:id/publish/comment',
     component: CommentPublish,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/my/comment',
+    component: MyComment,
     meta: {
       requireAuth: true
     }

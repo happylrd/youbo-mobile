@@ -61,6 +61,15 @@ export function publishComment (userId, tweetId, content) {
     })
 }
 
+export function listMyComment (userId) {
+  const url = '/users/' + userId + '/comments'
+
+  return axios.get(url)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
 export function collectTweet (userId, tweetId) {
   const url = '/users/' + userId + '/tweets/' + tweetId + '/collections'
 

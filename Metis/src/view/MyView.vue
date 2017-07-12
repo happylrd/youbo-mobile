@@ -120,6 +120,7 @@
       },
       toMyCommentPage () {
         console.log('MyCommentPage')
+        this.$router.push('/my/comment')
       },
       toMyCollectionPage () {
         console.log('MyCollectionPage')
